@@ -1,0 +1,71 @@
+package main
+
+type ButtonAttrs struct {
+	Type    string
+	Brand   string
+	Figure  string
+	Size    string
+	Prefix  string
+	Outline bool
+	Active  bool
+	Link    templ.SafeURL
+}
+
+templ Button(btn ButtonAttrs, attrs templ.Attributes) {
+	switch btn.Type {
+		case "button":
+			<button {attrs...}
+				type="button"
+				if btn.Outline && btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline btn-active" }
+				}
+				else
+				if !btn.Outline && btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-active" }
+				}
+				else
+				if btn.Outline && !btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline" }
+				} else{
+                    class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") }
+                }
+			>{ children... }
+</button>
+		case "anchor":
+			<a
+				href={ btn.Link }
+				if btn.Outline && btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline btn-active" }
+				}
+				else
+				if !btn.Outline && btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-active" }
+				}
+				else
+				if btn.Outline && !btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline" }
+				} else{
+                    class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") }
+                }
+			>{ children... }
+</a>
+		default:
+			<button {attrs...}
+				type="button"
+				if btn.Outline && btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline btn-active" }
+				}
+				else
+				if !btn.Outline && btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-active" }
+				}
+				else
+				if btn.Outline && !btn.Active {
+					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline" }
+				} else{
+                    class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") }
+                }
+			>{ children... }
+</button>
+	}
+}
