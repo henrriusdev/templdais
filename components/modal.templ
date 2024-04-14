@@ -1,0 +1,26 @@
+package main
+
+type ModalAttrs struct {
+	Position string
+	ID       string
+	Open     bool
+}
+
+script openModal(id string) {
+  var modal = document.getElementById(id);
+  modal.showModal();
+}
+
+templ Modal(modal ModalAttrs, btn ButtonAttrs, attrs templ.Attributes) {
+	@Button(btn, attrs) {
+		Open Modal
+	}
+	<dialog id={ modal.ID } class={ "modal modal-" + modal.Position }>
+		<div class="modal-box">
+			{ children... }
+		</div>
+		<form method="dialog" class="modal-backdrop">
+			<button>close</button>
+		</form>
+	</dialog>
+}
