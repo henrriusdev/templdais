@@ -1,6 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/a-h/templ"
+)
+
+type Links struct {
+	Text string
+	Href templ.SafeURL
+}
+
+type FormAttrs struct {
+	FieldName  string
+	FieldID    string
+	FieldBrand string
+	FieldSize  string
+	Checked    string
+}
 
 func GetBrandColorClass(prefix, brand string) string {
 	switch brand {
@@ -53,4 +70,8 @@ func GetShapeClass(prefix, shape string) string {
 	default:
 		return ""
 	}
+}
+
+func getClassName(brand, figure, size, prefix string) string {
+	return fmt.Sprintf("%s %s %s %s", prefix, GetBrandColorClass(prefix, brand), GetShapeClass(prefix, figure), GetSizeClass(prefix, size))
 }

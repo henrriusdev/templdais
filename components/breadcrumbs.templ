@@ -1,0 +1,11 @@
+package main
+
+templ Breadcrumbs(textSize string, items []Links) {
+  <div class={"breadcrumbs text-" + textSize}>
+    <ul>
+      for _, item := range items {
+        <li><a href={item.Href}>{item.Text}</a></li>
+      }
+    </ul>
+  </div>
+}
