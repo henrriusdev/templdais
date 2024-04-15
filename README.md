@@ -76,12 +76,12 @@ Here, the arguments are:
 - [x]  File Input
 - [x]  Range
 - [x]  Select
+- [x]  Text input
+- [x]  Textarea
+- [x]  Code
 
 Comming soon:
 
-- [ ]  Text input
-- [ ]  Textarea
-- [ ]  Code
 - [ ]  Alert
 - [ ]  Timeline
 - [ ]  Divider
