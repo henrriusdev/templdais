@@ -61,11 +61,11 @@ Here, the arguments are:
 - [x]  Breadcrumbs (2024/04/14)
 - [x]  Checkbox (2024/04/14)
 - [x]  Radio (2024/04/14)
+- [x]  Accordion (2024/04/14)
+- [x]  Badge (2024/04/14)
 
 Comming soon:
 
-- [ ]  Accordion
-- [ ]  Badge
 - [ ]  Card
 - [ ]  Table
 - [ ]  Navbar
