@@ -70,10 +70,10 @@ Here, the arguments are:
 ### Added 2024/04/15
 
 - [x]  Table
+- [x]  Navbar
 
 Comming soon:
 
-- [ ]  Navbar
 - [ ]  Pagination
 - [ ]  Tab
 - [ ]  Toast

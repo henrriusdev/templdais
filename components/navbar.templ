@@ -1,0 +1,108 @@
+package main
+
+type NavbarAttrs struct {
+	Brand        string
+	Items        []Links
+	Title        string
+	TitleOnly    bool
+	Submenu      bool
+	SubmenuItems map[string][]Links
+	Search       bool
+	Responsive   bool
+	Centered     bool
+	Class        string
+}
+
+templ RenderLinks(items []Links, submenuItems map[string][]Links) {
+	for _, item := range items {
+		if submenuItems[item.Text] != nil {
+			<li>
+				<details>
+					<summary>
+						Parent
+					</summary>
+					<ul class="p-2 bg-base-100 rounded-t-none">
+						<li><a>Link 1</a></li>
+						<li><a>Link 2</a></li>
+					</ul>
+				</details>
+			</li>
+		} else {
+			<li><a href={ item.Href }>{ item.Text }</a></li>
+		}
+	}
+}
+
+templ Navbar(nb NavbarAttrs) {
+	if nb.TitleOnly {
+		<div class={ "navbar bg-base-100 " + nb.Class }>
+			<a class="btn btn-ghost text-xl">{ nb.Title }</a>
+		</div>
+	}
+	if nb.Submenu {
+		<div class={ "navbar bg-base-100" + nb.Class }>
+			<div class="flex-1">
+				<a class="btn btn-ghost text-xl">{ nb.Title }</a>
+			</div>
+			<div class="flex-none">
+				<ul class="menu menu-horizontal px-1">
+					@RenderLinks(nb.Items, nb.SubmenuItems)
+				</ul>
+			</div>
+		</div>
+	}
+	if nb.Search {
+		<div class={ "navbar bg-base-100 " + nb.Class }>
+			<div class="flex-1">
+				<a class="btn btn-ghost text-xl">{ nb.Title }</a>
+			</div>
+			<div class="flex-none gap-2">
+				<div class="form-control">
+					<input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto"/>
+				</div>
+				@DropdownMenu(DropdownAttrs{Position: "end", Items: nb.Items})
+			</div>
+		</div>
+	}
+	if nb.Centered {
+		<div class={ "navbar bg-base-100 " + nb.Class }>
+			<div class="navbar-start">
+				@DropdownMenu(DropdownAttrs{Position: "start", Items: nb.Items})
+			</div>
+			<div class="navbar-center">
+				<a class="btn btn-ghost text-xl">{ nb.Title }</a>
+			</div>
+			<div class="navbar-end">
+				@Button(ButtonAttrs{Type: "btn", Brand: "ghost", Size: "xs", Figure: "circle"}, templ.Attributes{}) {
+					<div class="indicator">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+						@Badge(BadgeAttrs{Brand: "primary", Size: "xs", Class: "indicator-item"})
+					</div>
+				}
+			</div>
+		</div>
+	}
+	if nb.Responsive {
+		<div class="navbar bg-base-100">
+			<div class="navbar-start">
+				<div class="dropdown">
+					<div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
+					</div>
+					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+						@RenderLinks(nb.Items, nb.SubmenuItems)
+					</ul>
+				</div>
+				<a class="btn btn-ghost text-xl">{  }</a>
+			</div>
+			<div class="navbar-center hidden lg:flex">
+				<ul class="menu menu-horizontal px-1">
+					@RenderLinks(nb.Items, nb.SubmenuItems)
+				</ul>
+			</div>
+			<div class="navbar-end">
+				{ children... }
+			</div>
+		</div>
+	}
+}
