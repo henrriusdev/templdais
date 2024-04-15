@@ -54,19 +54,21 @@ Here, the arguments are:
 
 [DaisyUI](https://daisyui.com) Components ported to TemplDais:
 
-- [x]  Button (2024/04/14)
-- [x]  Dropdown (2024/04/14)
-- [x]  Modal (2024/04/14)
-- [x]  Kbd (2024/04/14)
-- [x]  Breadcrumbs (2024/04/14)
-- [x]  Checkbox (2024/04/14)
-- [x]  Radio (2024/04/14)
-- [x]  Accordion (2024/04/14)
-- [x]  Badge (2024/04/14)
+### Added 2024/04/14
+
+- [x]  Button
+- [x]  Dropdown
+- [x]  Modal
+- [x]  Kbd
+- [x]  Breadcrumbs
+- [x]  Checkbox
+- [x]  Radio
+- [x]  Accordion
+- [x]  Badge
+- [x]  Card (responsive card for now)
 
 Comming soon:
 
-- [ ]  Card (responsive)
 - [ ]  Table
 - [ ]  Navbar
 - [ ]  Pagination
