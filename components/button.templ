@@ -5,67 +5,48 @@ type ButtonAttrs struct {
 	Brand   string
 	Figure  string
 	Size    string
-	Prefix  string
 	Outline bool
 	Active  bool
 	Link    templ.SafeURL
 }
 
+func (btn ButtonAttrs) GetClassName() string {
+	var class = getClassName(btn.Brand, btn.Figure, btn.Size, "btn")
+
+	if btn.Outline {
+		class += " btn-outline"
+	}
+	if btn.Active {
+		class += "btn-active"
+	}
+
+	return class
+}
+
 templ Button(btn ButtonAttrs, attrs templ.Attributes) {
 	switch btn.Type {
 		case "button":
-			<button {attrs...}
+			<button
+				{ attrs... }
 				type="button"
-				if btn.Outline && btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline btn-active" }
-				}
-				else
-				if !btn.Outline && btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-active" }
-				}
-				else
-				if btn.Outline && !btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline" }
-				} else{
-                    class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") }
-                }
-			>{ children... }
-</button>
+				class={ btn.GetClassName() }
+			>
+				{ children... }
+			</button>
 		case "anchor":
 			<a
 				href={ btn.Link }
-				if btn.Outline && btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline btn-active" }
-				}
-				else
-				if !btn.Outline && btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-active" }
-				}
-				else
-				if btn.Outline && !btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline" }
-				} else{
-                    class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") }
-                }
-			>{ children... }
-</a>
+				class={ btn.GetClassName() }
+			>
+				{ children... }
+			</a>
 		default:
-			<button {attrs...}
+			<button
+				{ attrs... }
 				type="button"
-				if btn.Outline && btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline btn-active" }
-				}
-				else
-				if !btn.Outline && btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-active" }
-				}
-				else
-				if btn.Outline && !btn.Active {
-					class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") + "btn-outline" }
-				} else{
-                    class={ getClassName(btn.Brand, btn.Figure, btn.Size, "btn") }
-                }
-			>{ children... }
-</button>
+				class={ btn.GetClassName() }
+			>
+				{ children... }
+			</button>
 	}
 }

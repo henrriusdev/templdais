@@ -7,24 +7,25 @@ type DropdownAttrs struct {
 	Hover    bool
 }
 
+func (attrs *DropdownAttrs) GetClassName() string {
+	var class = `dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-` + attrs.Position
+	if attrs.End {
+		class += ` dropdown-end`
+	}
+
+	if attrs.Hover {
+		class += ` dropdown-hover`
+	}
+
+	return class
+}
+
 templ DropdownMenu(attrs DropdownAttrs) {
 	<div class="dropdown">
 		<div tabindex="0" role="button" class="btn m-1">Click</div> <!-- Dropdown button, srry, safari issues -->
 		<ul
 			tabindex="0"
-			if attrs.End && attrs.Hover {
-				class={ `dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-end dropdown-hover dropdown-` + attrs.Position }
-			}
-			else
-			if attrs.End && !attrs.Hover {
-				class={ `dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-end dropdown-` + attrs.Position }
-			}
-			else
-			if !attrs.End && attrs.Hover {
-				class={ `dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-hover dropdown-` + attrs.Position }
-			} else {
-				class={ `dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-` + attrs.Position }
-			}
+			class={ attrs.GetClassName() }
 		>
 			for _, item := range attrs.Items {
 				<li><a href={ item.Href }>{ item.Text } </a> </li>

@@ -21,27 +21,28 @@ func formatName(name string, index int) string {
 	return fmt.Sprintf("%s-%d", strings.ToLower(name), index)
 }
 
+func (acc AccordionItem) GetClassName() string {
+	var class = "collapse bg-base-200"
+	if acc.Arrow {
+		class += " collapse-arrow"
+	} else if acc.PlusMinus {
+		class += " collapse-plus"
+	}
+
+	if acc.Open {
+		class += " collapse-open"
+	} else if acc.Close {
+		class += " collapse-close"
+	}
+
+	return class
+}
+
 templ Accordion(acc AccordionAttrs) {
 	<div class={ acc.Class }>
 		for i, item := range acc.Items {
 			<div
-				if item.Arrow {
-					class="collapse bg-base-200 collapse-arrow"
-				}
-				else
-				if item.PlusMinus {
-					class="collapse bg-base-200 collapse-plus"
-				}
-				else
-				if item.Open {
-					class="collapse bg-base-200 collapse-open"
-				}
-				else
-				if item.Close {
-					class="collapse bg-base-200 collapse-close"
-				} else {
-					class="collapse bg-base-200"
-				}
+				class={ item.GetClassName() }
 			>
 				<input type="radio" name={ formatName(item.Title, i) } checked="checked"/>
 				<div class="collapse-title text-xl font-medium">
