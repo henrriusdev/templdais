@@ -1,0 +1,41 @@
+package main
+
+type PaginationAttrs struct {
+	Total       int
+  PagesToShow int
+	CurrentPage int
+	LastPage    int
+	NextPageUrl string
+	PrevPageUrl string
+}
+
+func showPage(i, currentPage, total, pagesToShow int) bool {
+  if i == 1 || i == total {
+    return true
+  }
+
+  if i >= currentPage-pagesToShow && i <= currentPage+pagesToShow {
+    return true
+  }
+
+  return false
+
+}
+
+templ Pagination(pg PaginationAttrs, btn ButtonAttrs) {
+	<div class="join">
+		for i := 1; i <= pg.Total; i++ {
+			if i == pg.CurrentPage {
+				@Button(btn.SetActive(), templ.Attributes{}) {
+					i
+				}
+			} else {
+				if showPage(i, pg.CurrentPage, pg.Total, pg.PagesToShow) {
+					@Button(btn, templ.Attributes{}) {
+						i
+					}
+				}
+			}
+		}
+	</div>
+}

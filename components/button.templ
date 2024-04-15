@@ -23,6 +23,33 @@ func (btn ButtonAttrs) GetClassName() string {
 	return class
 }
 
+func (btn ButtonAttrs) SetActive() ButtonAttrs {
+	newBtn := ButtonAttrs{
+		Type:    btn.Type,
+		Brand:   btn.Brand,
+		Figure:  btn.Figure,
+		Size:    btn.Size,
+		Outline: btn.Outline,
+		Active:  true,
+		Link:    btn.Link,
+	}
+	return newBtn
+}
+
+func (btn ButtonAttrs) SetLink(link templ.SafeURL) ButtonAttrs {
+	newBtn := ButtonAttrs{
+		Type:    btn.Type,
+		Brand:   btn.Brand,
+		Figure:  btn.Figure,
+		Size:    btn.Size,
+		Outline: btn.Outline,
+		Active:  btn.Active,
+		Link:    link,
+	}
+	
+	return newBtn
+}
+
 templ Button(btn ButtonAttrs, attrs templ.Attributes) {
 	switch btn.Type {
 		case "button":

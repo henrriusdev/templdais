@@ -71,10 +71,10 @@ Here, the arguments are:
 
 - [x]  Table
 - [x]  Navbar
+- [x]  Pagination
 
 Comming soon:
 
-- [ ]  Pagination
 - [ ]  Tab
 - [ ]  Toast
 - [ ]  File Input
@@ -103,6 +103,7 @@ And next (not my priority):
 - [ ]  Avatar
 - [ ]  Steps
 - [ ]  Menu
+- [ ]  Advanced pagination
 
 Not implementable:
 
