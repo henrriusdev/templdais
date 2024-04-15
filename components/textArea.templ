@@ -1,0 +1,5 @@
+package main
+
+templ TextArea(fma FormAttrs, attrs templ.Attributes) {
+  <input type="text" placeholder={fma.Placeholder} class={"textarea w-full max-w-xs " + fma.GetClassName("textarea")} name={fma.FieldName} id={fma.FieldID} {attrs...}/>
+}

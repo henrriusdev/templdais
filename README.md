@@ -73,30 +73,33 @@ Here, the arguments are:
 - [x]  Navbar
 - [x]  Pagination
 - [x]  Toast
+- [x]  File Input
+- [x]  Range
+- [x]  Select
 
 Comming soon:
 
-- [ ]  File Input
-- [ ]  Range
-- [ ]  Select
 - [ ]  Text input
 - [ ]  Textarea
 - [ ]  Code
+- [ ]  Alert
+- [ ]  Timeline
+- [ ]  Divider
+- [ ]  Indicator
+
+**PD**: A Documentation web of *TemplDais* is incoming soon (in development)
+**PD 2**: I've plained to use or create a Icons Kit for *TemplDais*, for now, you must provide the url of the icons (svg)
 
 And next (not my priority):
 
 - [ ]  Carousel
 - [ ]  Chat bubble
-- [ ]  Timeline
 - [ ]  Bottom navigation
-- [ ]  Alert
 - [ ]  Progress
 - [ ]  Radial Progress
 - [ ]  Tooltip
 - [ ]  Toggle
-- [ ]  Divider
 - [ ]  Drawer
-- [ ]  Indicator
 - [ ]  Collapse
 - [ ]  Stat
 - [ ]  Avatar

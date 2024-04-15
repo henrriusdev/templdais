@@ -1,0 +1,5 @@
+package main
+
+templ TextField(fmt FormAttrs, attrs templ.Attributes) {
+  <input type="text" placeholder={fmt.Placeholder} class={"input w-full max-w-xs " + fmt.GetClassName("input")} name={fmt.FieldName} id={fmt.FieldID} {attrs...}/>
+}

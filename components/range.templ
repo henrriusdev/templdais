@@ -1,0 +1,19 @@
+package main
+
+type RangeAttrs struct {
+	ID   string
+	Name string
+
+	// style
+	Brand string
+	Size  string
+	Class string
+}
+
+func (rng RangeAttrs) GetClassname() string {
+	return getClassName(rng.Brand, "", rng.Size, "range") + " " + rng.Class
+}
+
+templ Range(rng RangeAttrs, attrs templ.Attributes) {
+	<input type="range" class={ rng.GetClassname() } name={ rng.Name } id={ rng.ID } { attrs... }/>
+}

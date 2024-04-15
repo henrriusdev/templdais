@@ -1,0 +1,26 @@
+package main
+
+type FileInputAttrs struct {
+	Brand  string
+	Size   string
+	Border string
+	Class  string
+}
+
+func (f FileInputAttrs) GetClassname() string {
+	var class = "file-input " + getClassName(f.Brand, "", f.Size, "file-input")
+
+	if f.Border != "" {
+		class += " file-input-bordered"
+	}
+
+	if f.Class != "" {
+		class += " " + f.Class
+	}
+
+	return class
+}
+
+templ FileInput(fi FileInputAttrs, attrs templ.Attributes) {
+	<input type="file" class={ fi.GetClassname() } { attrs... }/>
+}

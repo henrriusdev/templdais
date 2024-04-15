@@ -1,0 +1,33 @@
+package main
+
+type CodeAttrs struct {
+	Prefix string
+	Brand  string
+	Text   string
+	Class  string
+
+	Codes []Codes
+}
+
+type Codes struct {
+	Code   string
+	Prefix string
+	Brand  string
+	Size   string
+}
+
+func (code Codes) GetClassName() string {
+	return getClassName(code.Brand, "", code.Size, "text")
+}
+
+templ Code(cd CodeAttrs) {
+	<div class={ "mockup-code " + cd.Class }>
+		if len(cd.Codes) > 0 {
+			for _, c := range cd.Codes {
+				<pre data-prefix={ c.Prefix } class={ c.GetClassName() }><code>{ c.Code }</code></pre>
+			}
+		} else {
+			<pre data-prefix={ cd.Prefix } class={  }><code>{ cd.Text }</code></pre>
+		}
+	</div>
+}

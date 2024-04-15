@@ -1,0 +1,17 @@
+package main
+
+templ Select(fms FormAttrs, attrs templ.Attributes) {
+	<select class={ "select w-full max-w-xs " + fms.GetClassName("select") } { attrs... }>
+		<option disabled selected>{ fms.Placeholder }</option>
+		switch fms.Options.(type) {
+			case OptsString:
+				for _, option := range fms.Options.(OptsString) {
+					<option value={ option }>{ option }</option>
+				}
+			case []OptsStruct:
+				for _, option := range fms.Options.([]OptsStruct) {
+					<option value={ option.Value }>{ option.Text }</option>
+				}
+		}
+	</select>
+}

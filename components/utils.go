@@ -11,13 +11,43 @@ type Links struct {
 	Href templ.SafeURL
 }
 
-type FormAttrs struct {
-	FieldName  string
-	FieldID    string
-	FieldBrand string
-	FieldSize  string
-	Checked    string
+type OptsStruct struct {
+	Text  string
+	Value string
 }
+
+type OptsString []string
+
+type Options interface{}
+
+type FormAttrs struct {
+	FieldName     string
+	FieldID       string
+	FieldBrand    string
+	FieldSize     string
+	Checked       string
+	Class         string
+	FieldBordered bool
+	Options       Options
+	Placeholder   string
+}
+
+func (f FormAttrs) GetClassName(prefix string) string {
+	class := getClassName(f.FieldBrand, "", f.FieldSize, prefix)
+	if f.FieldBordered {
+		class += " " + prefix + "-bordered"
+	}
+
+	if f.Class != "" {
+		class += " " + f.Class
+	}
+
+	return class
+}
+
+// func (f FormAttrs) GetOptionsType() string {
+// 	switch f.Options.(type) {
+// }
 
 func GetBrandColorClass(prefix, brand string) string {
 	switch brand {
