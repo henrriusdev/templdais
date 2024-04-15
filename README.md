@@ -67,9 +67,12 @@ Here, the arguments are:
 - [x]  Badge
 - [x]  Card (responsive card for now)
 
+### Added 2024/04/15
+
+- [x]  Table
+
 Comming soon:
 
-- [ ]  Table
 - [ ]  Navbar
 - [ ]  Pagination
 - [ ]  Tab

@@ -1,0 +1,62 @@
+package main
+
+type TableAttrs struct {
+	TableName  string
+	Columns    []string
+	PrimaryKey string
+	Rows       []map[string]string
+	Zebra      bool
+	PinColumns bool
+	PinRows    bool
+	Size       string
+}
+
+func (t TableAttrs) GetTableClass() string {
+	var class = "table"
+	if t.Size != "" {
+		class += " " + t.Size
+	}
+
+	if t.Zebra {
+		class += " table-zebra"
+	}
+
+	if t.PinColumns {
+		class += " table-pin-columns"
+	}
+
+	if t.PinRows {
+		class += " table-pin-rows"
+	}
+
+	return class
+}
+
+templ Table(tb TableAttrs) {
+	<div class="overflow-x-auto">
+		<table class={ tb.GetTableClass() }>
+			<!-- head -->
+			<thead>
+				<tr>
+					for _, col := range tb.Columns {
+						<th>{ col }</th>
+					}
+				</tr>
+			</thead>
+			<tbody>
+				<!-- rows -->
+				for i, row := range tb.Rows {
+					<tr>
+						for _, col := range tb.Columns {
+							if i == 0 {
+								<th>{ row[col] }</th>
+							} else {
+								<td>{ row[col] }</td>
+							}
+						}
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
