@@ -72,11 +72,10 @@ Here, the arguments are:
 - [x]  Table
 - [x]  Navbar
 - [x]  Pagination
+- [x]  Toast
 
 Comming soon:
 
-- [ ]  Tab
-- [ ]  Toast
 - [ ]  File Input
 - [ ]  Range
 - [ ]  Select
@@ -105,9 +104,10 @@ And next (not my priority):
 - [ ]  Menu
 - [ ]  Advanced pagination
 
-Not implementable:
+Not implementable (yet):
 
 - Countdown (sorry, templ doesn´t allows dynamic style attribute for set `--value` css variable)
+- Tab (it needs a tabs and tabpanel, maybe in a long future I'll work on this)
 
 ## Acknowledgements
 

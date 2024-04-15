@@ -1,0 +1,35 @@
+package main
+
+type ToastAttrs struct {
+	Msg                string
+	Brand              string
+	VerticalPosition   string
+	HorizontalPosition string
+	Class              string
+}
+
+func (tst ToastAttrs) GetClassName() string {
+	var class = "toast"
+
+	if tst.HorizontalPosition != "" {
+		class += " toast-" + tst.HorizontalPosition
+	}
+
+	if tst.VerticalPosition != "" {
+		class += " toast-" + tst.VerticalPosition
+	}
+
+	if tst.Class != "" {
+		class += " " + tst.Class
+	}
+
+	return class
+}
+
+templ Toast(tst ToastAttrs) {
+	<div class={ tst.GetClassName() }>
+		<div class={ getClassName(tst.Brand, "", "", "alert") }>
+			<span>{ tst.Msg }</span>
+		</div>
+	</div>
+}
