@@ -1,0 +1,24 @@
+package main
+
+type CardAttrs struct {
+  Title string
+  Description string
+  Image string
+  ButtonText string
+  Class string
+}
+
+templ Card(cd CardAttrs, btn ButtonAttrs) {
+  <div class={"card lg:card-side bg-base-100 shadow-xl" + cd.Class}>
+  <figure><img src={cd.Image} alt="Album"/></figure>
+  <div class="card-body">
+    <h2 class="card-title">{cd.Title}</h2>
+    <p>{cd.Description}</p>
+    <div class="card-actions justify-end">
+      @Button(btn, templ.Attributes{}){
+        {cd.ButtonText}
+      }
+    </div>
+  </div>
+</div>
+}

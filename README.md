@@ -66,7 +66,7 @@ Here, the arguments are:
 
 Comming soon:
 
-- [ ]  Card
+- [ ]  Card (responsive)
 - [ ]  Table
 - [ ]  Navbar
 - [ ]  Pagination
