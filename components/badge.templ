@@ -1,17 +1,19 @@
 package main
 
 type BadgeAttrs struct {
-  Brand   string
+	Brand   string
 	Outline bool
 	Size    string
-  Text   string
-  Class string
+	Text    string
+	Class   string
 }
 
 templ Badge(bdg BadgeAttrs) {
-  <span if bdg.Outline {
-    class={getClassName(bdg.Brand, "", bdg.Size, "badge") + " badge-outline " + bdg.Class}
-  } else{
-    class={getClassName(bdg.Brand, "", bdg.Size, "badge") + " " + bdg.Class}
-  }>{bdg.Text}</span>
+	<span
+		if bdg.Outline {
+			class={ getClassName(bdg.Brand, "", bdg.Size, "badge") + " badge-outline " + bdg.Class }
+		} else {
+			class={ getClassName(bdg.Brand, "", bdg.Size, "badge") + " " + bdg.Class }
+		}
+	>{ bdg.Text }</span>
 }
