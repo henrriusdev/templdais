@@ -84,23 +84,22 @@ Here, the arguments are:
 
 - [x]  Alert
 - [x]  Divider
+- [x]  Menu
 
 
 Comming soon:
 
-- [ ]  Menu
 - [ ]  Bottom navigation
+- [ ]  Progress
+- [ ]  Radial Progress
+- [ ]  Tooltip
 
 **PD**: A Documentation web of *TemplDais* is incoming soon (in development)
 **PD 2**: I've plained to use or create a Icons Kit for *TemplDais*, for now, you must provide the url of the icons (svg)
 
 And next (not my priority):
 
-- [ ]  Carousel
 - [ ]  Chat bubble
-- [ ]  Progress
-- [ ]  Radial Progress
-- [ ]  Tooltip
 - [ ]  Toggle
 - [ ]  Drawer
 - [ ]  Collapse
