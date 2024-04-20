@@ -80,12 +80,16 @@ Here, the arguments are:
 - [x]  Textarea
 - [x]  Code
 
+### Added 2024/04/19
+
+- [x]  Alert
+- [x]  Divider
+
+
 Comming soon:
 
-- [ ]  Alert
-- [ ]  Timeline
-- [ ]  Divider
-- [ ]  Indicator
+- [ ]  Menu
+- [ ]  Bottom navigation
 
 **PD**: A Documentation web of *TemplDais* is incoming soon (in development)
 **PD 2**: I've plained to use or create a Icons Kit for *TemplDais*, for now, you must provide the url of the icons (svg)
@@ -94,7 +98,6 @@ And next (not my priority):
 
 - [ ]  Carousel
 - [ ]  Chat bubble
-- [ ]  Bottom navigation
 - [ ]  Progress
 - [ ]  Radial Progress
 - [ ]  Tooltip
@@ -103,14 +106,14 @@ And next (not my priority):
 - [ ]  Collapse
 - [ ]  Stat
 - [ ]  Avatar
-- [ ]  Steps
-- [ ]  Menu
 - [ ]  Advanced pagination
 
 Not implementable (yet):
 
 - Countdown (sorry, templ doesn´t allows dynamic style attribute for set `--value` css variable)
 - Tab (it needs a tabs and tabpanel, maybe in a long future I'll work on this)
+- Timeline (for now, it includes many features that I can´t do it myself yet)
+- Indicator (it is a section with a badge... implement yourself)
 
 ## Acknowledgements
 

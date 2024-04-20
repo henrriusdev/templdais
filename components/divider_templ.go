@@ -10,28 +10,30 @@ import "context"
 import "io"
 import "bytes"
 
-type FileInputAttrs struct {
-	Brand  string
-	Size   string
-	Border string
-	Class  string
+type DividerAttrs struct {
+	Brand    string
+	Vertical bool
+	Start    bool
+	Text     string
+	Class    string
 }
 
-func (f FileInputAttrs) GetClassname() string {
-	var class = "file-input " + getClassName(f.Brand, "", f.Size, "file-input")
-
-	if f.Border != "" {
-		class += " file-input-bordered"
+func (div DividerAttrs) GetClassName() string {
+	className := getClassName(div.Brand, "", "", "divider")
+	if div.Vertical {
+		className += "divider-vertical "
+	} else {
+		className += "divider-horizontal "
 	}
-
-	if f.Class != "" {
-		class += " " + f.Class
+	if div.Start {
+		className += " divider-start "
+	} else {
+		className += " divider-end "
 	}
-
-	return class
+	return className + div.Class
 }
 
-func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {
+func Divider(dv DividerAttrs) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -44,7 +46,7 @@ func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{fi.GetClassname()}
+		var templ_7745c5c3_Var2 = []any{dv.GetClassName()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -56,7 +58,7 @@ func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var2).String())
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/fileInput.templ`, Line: 1, Col: 0}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/divider.templ`, Line: 1, Col: 0}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -66,9 +68,16 @@ func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ.RenderAttributes(ctx, templ_7745c5c3_Buffer, attrs)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		if dv.Text != "" {
+			var templ_7745c5c3_Var4 string
+			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(dv.Text)
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/divider.templ`, Line: 29, Col: 12}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
 		templ_7745c5c3_Err = templ.WriteWatchModeString(templ_7745c5c3_Buffer, 3)
 		if templ_7745c5c3_Err != nil {

@@ -1,0 +1,31 @@
+package main
+
+import "fmt"
+
+type AlertAttrs struct {
+	Brand       string
+	Buttons     bool
+	Class       string
+	Text        string
+	Description string
+}
+
+func (a AlertAttrs) GetClassName() string {
+	return fmt.Sprintf("alert alert-%s %s", a.Brand, a.Class)
+}
+
+templ Alert(art AlertAttrs) {
+	<div role="alert" class={ art.GetClassName() }>
+		if len(art.Description) > 0 {
+			<h3 class="font-bold">{ art.Text }</h3>
+			<p class="text-xs">{ art.Description }</p>
+		} else {
+			<span>{ art.Text }</span>
+		}
+		if art.Buttons {
+			<div>
+				{ children... }
+			</div>
+		}
+	</div>
+}

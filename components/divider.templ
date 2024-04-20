@@ -1,0 +1,32 @@
+package main
+
+type DividerAttrs struct {
+	Brand    string
+	Vertical bool
+	Start    bool
+	Text     string
+	Class    string
+}
+
+func (div DividerAttrs) GetClassName() string {
+	className := getClassName(div.Brand, "", "", "divider")
+	if div.Vertical {
+		className += "divider-vertical "
+	} else {
+		className += "divider-horizontal "
+	}
+	if div.Start {
+		className += " divider-start "
+	} else {
+		className += " divider-end "
+	}
+	return className + div.Class
+}
+
+templ Divider(dv DividerAttrs) {
+	<div class={ dv.GetClassName() }>
+		if dv.Text != "" {
+			{ dv.Text }
+		}
+	</div>
+}

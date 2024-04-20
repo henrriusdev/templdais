@@ -1,0 +1,69 @@
+package main
+
+type MenuAttrs struct {
+	Size       string
+	Responsive bool
+	Vertical   bool
+	Items      []MenuItem
+	Class      string
+}
+
+func (m MenuAttrs) GetClass() string {
+	class := "menu"
+	if m.Size != "" {
+		class += " menu-" + m.Size
+	}
+
+	if m.Responsive && !m.Vertical {
+		class += " menu-vertical lg:menu-horizontal"
+	}
+
+	if m.Vertical {
+		class += " menu-vertical"
+	} else {
+		class += " menu-horizontal"
+	}
+
+	if m.Class != "" {
+		class += " " + m.Class
+	}
+
+	return class
+}
+
+type MenuItem struct {
+	Text     string
+	Link     templ.SafeURL
+	Class    string
+	Disabled bool
+}
+
+func (m MenuItem) GetClass() string {
+	class := ""
+
+	if m.Disabled {
+		class = "disabled"
+	}
+
+	if m.Class != "" {
+		class += " " + m.Class
+	}
+
+	return class
+}
+
+templ Menu(m MenuAttrs) {
+	<ul class={ m.GetClass() }>
+		for _, item := range m.Items {
+			<li class={ item.Class }>
+				if item.Disabled {
+					<span>{ item.Text }</span>
+				} else {
+					<a
+						href={ item.Link }
+					>{ item.Text }</a>
+				}
+			</li>
+		}
+	</ul>
+}
