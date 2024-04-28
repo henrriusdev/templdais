@@ -33,7 +33,7 @@ func (tst ToastAttrs) GetClassName() string {
 		class += " " + tst.Class
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 func Toast(tst ToastAttrs) templ.Component {
@@ -71,7 +71,7 @@ func Toast(tst ToastAttrs) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 = []any{getClassName(tst.Brand, "", "", "alert")}
+		var templ_7745c5c3_Var4 = []any{trimSpaces(getClassName(tst.Brand, "", "", "alert"))}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

@@ -2,6 +2,8 @@ package templdais
 
 import (
 	"fmt"
+	"regexp"
+	"strings"
 
 	"github.com/a-h/templ"
 )
@@ -42,12 +44,8 @@ func (f FormAttrs) GetClassName(prefix string) string {
 		class += " " + f.Class
 	}
 
-	return class
+	return trimSpaces(class)
 }
-
-// func (f FormAttrs) GetOptionsType() string {
-// 	switch f.Options.(type) {
-// }
 
 func GetBrandColorClass(prefix, brand string) string {
 	switch brand {
@@ -103,5 +101,25 @@ func GetShapeClass(prefix, shape string) string {
 }
 
 func getClassName(brand, figure, size, prefix string) string {
-	return fmt.Sprintf("%s %s %s %s", prefix, GetBrandColorClass(prefix, brand), GetShapeClass(prefix, figure), GetSizeClass(prefix, size))
+	var class string
+	if brand != "" {
+		class += GetBrandColorClass(prefix, brand)
+	}
+
+	if size != "" {
+		class += " " + GetSizeClass(prefix, size)
+	}
+
+	if figure != "" {
+		class += " " + GetShapeClass(prefix, figure)
+	}
+
+	return trimSpaces(class)
+}
+
+func trimSpaces(s string) string {
+	// Compile the regex to match one or more whitespace characters
+	re := regexp.MustCompile(`\s+`)
+	// Replace matched segments with a single space
+	return re.ReplaceAllString(strings.TrimSpace(s), " ")
 }

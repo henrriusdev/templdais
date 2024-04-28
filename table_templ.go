@@ -39,7 +39,7 @@ func (t TableAttrs) GetTableClass() string {
 		class += " table-pin-rows"
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 func Table(tb TableAttrs) templ.Component {

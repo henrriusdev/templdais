@@ -30,7 +30,7 @@ func (a TooltipAttrs) GetClassName() string {
 		className += " " + a.Class
 	}
 
-	return className
+	return trimSpaces(className)
 }
 
 func Tooltip(a TooltipAttrs) templ.Component {

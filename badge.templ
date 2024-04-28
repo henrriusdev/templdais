@@ -8,12 +8,22 @@ type BadgeAttrs struct {
 	Class   string
 }
 
+func (bdg BadgeAttrs) GetClassName() string {
+	var className = getClassName(bdg.Brand, "", bdg.Size, "badge")
+
+	if bdg.Outline {
+		className += " badge-outline"
+	}
+
+	if bdg.Class != "" {
+		className += " " + bdg.Class
+	}
+
+	return trimSpaces(className)
+}
+
 templ Badge(bdg BadgeAttrs) {
 	<span
-		if bdg.Outline {
-			class={ getClassName(bdg.Brand, "", bdg.Size, "badge") + " badge-outline " + bdg.Class }
-		} else {
-			class={ getClassName(bdg.Brand, "", bdg.Size, "badge") + " " + bdg.Class }
-		}
+		class={ bdg.GetClassName() }
 	>{ bdg.Text }</span>
 }

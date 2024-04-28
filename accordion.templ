@@ -15,6 +15,7 @@ type AccordionItem struct {
 	PlusMinus bool
 	Open      bool
 	Close     bool
+	Class     string
 }
 
 func formatName(name string, index int) string {
@@ -35,7 +36,11 @@ func (acc AccordionItem) GetClassName() string {
 		class += " collapse-close"
 	}
 
-	return class
+	if acc.Class != "" {
+		class += " " + acc.Class
+	}
+
+	return trimSpaces(class)
 }
 
 templ Accordion(acc AccordionAttrs) {

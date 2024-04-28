@@ -28,7 +28,7 @@ func (f FileInputAttrs) GetClassname() string {
 		class += " " + f.Class
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {

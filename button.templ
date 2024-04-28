@@ -17,10 +17,10 @@ func (btn ButtonAttrs) GetClassName() string {
 		class += " btn-outline"
 	}
 	if btn.Active {
-		class += "btn-active"
+		class += " btn-active"
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 func (btn ButtonAttrs) SetActive() ButtonAttrs {
@@ -46,7 +46,7 @@ func (btn ButtonAttrs) SetLink(link templ.SafeURL) ButtonAttrs {
 		Active:  btn.Active,
 		Link:    link,
 	}
-	
+
 	return newBtn
 }
 

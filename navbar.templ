@@ -11,6 +11,16 @@ type NavbarAttrs struct {
 	Responsive   bool
 	Centered     bool
 	Class        string
+	BodyClass    string
+}
+
+func (nb NavbarAttrs) GetClassName() string {
+	var class = "navbar bg-base-100 " + getClassName(nb.Brand, "", "", "bg")
+	if nb.Class != "" {
+		class += " " + nb.Class
+	}
+
+	return trimSpaces(class)
 }
 
 templ RenderLinks(items []Links, submenuItems map[string][]Links) {
@@ -35,24 +45,24 @@ templ RenderLinks(items []Links, submenuItems map[string][]Links) {
 
 templ Navbar(nb NavbarAttrs) {
 	if nb.TitleOnly {
-		<div class={ "navbar bg-base-100 " + nb.Class }>
+		<div class={ nb.GetClassName() }>
 			<a class="btn btn-ghost text-xl">{ nb.Title }</a>
 		</div>
 	}
 	if nb.Submenu {
-		<div class={ "navbar bg-base-100" + nb.Class }>
+		<div class={ nb.GetClassName() }>
 			<div class="flex-1">
 				<a class="btn btn-ghost text-xl">{ nb.Title }</a>
 			</div>
 			<div class="flex-none">
-				<ul class="menu menu-horizontal px-1">
+				<ul class={ "menu menu-horizontal px-1 " + nb.BodyClass }>
 					@RenderLinks(nb.Items, nb.SubmenuItems)
 				</ul>
 			</div>
 		</div>
 	}
 	if nb.Search {
-		<div class={ "navbar bg-base-100 " + nb.Class }>
+		<div class={ nb.GetClassName() }>
 			<div class="flex-1">
 				<a class="btn btn-ghost text-xl">{ nb.Title }</a>
 			</div>
@@ -65,7 +75,7 @@ templ Navbar(nb NavbarAttrs) {
 		</div>
 	}
 	if nb.Centered {
-		<div class={ "navbar bg-base-100 " + nb.Class }>
+		<div class={ nb.GetClassName() }>
 			<div class="navbar-start">
 				@DropdownMenu(DropdownAttrs{Position: "start", Items: nb.Items})
 			</div>
@@ -89,14 +99,13 @@ templ Navbar(nb NavbarAttrs) {
 					<div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
 					</div>
-					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+					<ul tabindex="0" class={ "menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 " + nb.BodyClass }>
 						@RenderLinks(nb.Items, nb.SubmenuItems)
 					</ul>
 				</div>
-				<a class="btn btn-ghost text-xl">{  }</a>
 			</div>
 			<div class="navbar-center hidden lg:flex">
-				<ul class="menu menu-horizontal px-1">
+				<ul class={ "menu menu-horizontal px-1 " + nb.BodyClass }>
 					@RenderLinks(nb.Items, nb.SubmenuItems)
 				</ul>
 			</div>

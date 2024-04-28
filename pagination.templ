@@ -2,7 +2,7 @@ package templdais
 
 type PaginationAttrs struct {
 	Total       int
-  PagesToShow int
+	PagesToShow int
 	CurrentPage int
 	LastPage    int
 	NextPageUrl string
@@ -10,15 +10,15 @@ type PaginationAttrs struct {
 }
 
 func showPage(i, currentPage, total, pagesToShow int) bool {
-  if i == 1 || i == total {
-    return true
-  }
+	if i == 1 || i == total {
+		return true
+	}
 
-  if i >= currentPage-pagesToShow && i <= currentPage+pagesToShow {
-    return true
-  }
+	if i >= currentPage-pagesToShow && i <= currentPage+pagesToShow {
+		return true
+	}
 
-  return false
+	return false
 
 }
 

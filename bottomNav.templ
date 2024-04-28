@@ -1,10 +1,16 @@
 package templdais
 
 type BottomNavAttrs struct {
-	Size       string
-	Brand      string
-	Items      []ButtonAttrs
-	ItemsAttrs templ.Attributes
+	Size  string
+	Brand string
+	Items []BtmNavItem
+}
+
+type BtmNavItem struct {
+	Text   string
+	Class  string
+	Button ButtonAttrs
+	Attrs  templ.Attributes
 }
 
 func (btm BottomNavAttrs) GetClassName() string {
@@ -16,7 +22,9 @@ func (btm BottomNavAttrs) GetClassName() string {
 templ BottomNav(attrs BottomNavAttrs) {
 	<nav class={ attrs.GetClassName() }>
 		for _, item := range attrs.Items {
-			@Button(item, attrs.ItemsAttrs)
+			@Button(item.Button, item.Attrs) {
+				{ item.Text }
+			}
 		}
 	</nav>
 }

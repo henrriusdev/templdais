@@ -30,7 +30,7 @@ func (div DividerAttrs) GetClassName() string {
 	} else {
 		className += " divider-end "
 	}
-	return className + div.Class
+	return trimSpaces(className + div.Class)
 }
 
 func Divider(dv DividerAttrs) templ.Component {

@@ -4,6 +4,18 @@ type ModalAttrs struct {
 	Position string
 	ID       string
 	Open     bool
+	Class    string
+	BoxClass string
+}
+
+func (m ModalAttrs) GetClassName() string {
+	class := "modal modal-" + m.Position
+
+	if m.Class != "" {
+		class += " " + m.Class
+	}
+
+	return trimSpaces(class)
 }
 
 script openModal(id string) {
@@ -15,8 +27,8 @@ templ Modal(modal ModalAttrs, btn ButtonAttrs, attrs templ.Attributes) {
 	@Button(btn, attrs) {
 		Open Modal
 	}
-	<dialog id={ modal.ID } class={ "modal modal-" + modal.Position }>
-		<div class="modal-box">
+	<dialog id={ modal.ID } class={ modal.GetClassName() }>
+		<div class={ "modal-box " + modal.BoxClass }>
 			{ children... }
 		</div>
 		<form method="dialog" class="modal-backdrop">

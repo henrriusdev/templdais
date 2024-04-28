@@ -14,10 +14,17 @@ type Codes struct {
 	Prefix string
 	Brand  string
 	Size   string
+	Class  string
 }
 
 func (code Codes) GetClassName() string {
-	return getClassName(code.Brand, "", code.Size, "text")
+	var className = getClassName(code.Brand, "", code.Size, "text")
+
+	if code.Class != "" {
+		className += " " + code.Class
+	}
+
+	return trimSpaces(className)
 }
 
 templ Code(cd CodeAttrs) {

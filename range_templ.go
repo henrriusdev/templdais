@@ -21,7 +21,7 @@ type RangeAttrs struct {
 }
 
 func (rng RangeAttrs) GetClassname() string {
-	return getClassName(rng.Brand, "", rng.Size, "range") + " " + rng.Class
+	return trimSpaces(getClassName(rng.Brand, "", rng.Size, "range") + " " + rng.Class)
 }
 
 func Range(rng RangeAttrs, attrs templ.Attributes) templ.Component {

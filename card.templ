@@ -9,8 +9,10 @@ type CardAttrs struct {
 }
 
 templ Card(cd CardAttrs, btn ButtonAttrs) {
-	<div class={ "card lg:card-side bg-base-100 shadow-xl" + cd.Class }>
-		<figure><img src={ cd.Image } alt="Album"/></figure>
+	<div class={ "card bg-base-100 shadow-xl " + cd.Class }>
+		if cd.Image != "" {
+			<figure><img src={ cd.Image } alt="Album"/></figure>
+		}
 		<div class="card-body">
 			<h2 class="card-title">{ cd.Title }</h2>
 			<p>{ cd.Description }</p>

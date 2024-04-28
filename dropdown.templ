@@ -5,6 +5,7 @@ type DropdownAttrs struct {
 	Items    []Links
 	End      bool
 	Hover    bool
+	Class    string
 }
 
 func (attrs *DropdownAttrs) GetClassName() string {
@@ -17,7 +18,11 @@ func (attrs *DropdownAttrs) GetClassName() string {
 		class += ` dropdown-hover`
 	}
 
-	return class
+	if attrs.Class != "" {
+		class += ` ` + attrs.Class
+	}
+
+	return trimSpaces(class)
 }
 
 templ DropdownMenu(attrs DropdownAttrs) {

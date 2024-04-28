@@ -18,7 +18,7 @@ type ProgressAttrs struct {
 }
 
 func (p ProgressAttrs) GetProgress() string {
-	return getClassName(p.Brand, "", "", "progress") + " " + p.Class
+	return trimSpaces(getClassName(p.Brand, "", "", "progress") + " " + p.Class)
 }
 
 func Progress(p ProgressAttrs) templ.Component {

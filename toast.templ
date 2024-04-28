@@ -23,12 +23,12 @@ func (tst ToastAttrs) GetClassName() string {
 		class += " " + tst.Class
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 templ Toast(tst ToastAttrs) {
 	<div class={ tst.GetClassName() }>
-		<div class={ getClassName(tst.Brand, "", "", "alert") }>
+		<div class={ trimSpaces(getClassName(tst.Brand, "", "", "alert")) }>
 			<span>{ tst.Msg }</span>
 		</div>
 	</div>

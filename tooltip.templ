@@ -20,7 +20,7 @@ func (a TooltipAttrs) GetClassName() string {
 		className += " " + a.Class
 	}
 
-	return className
+	return trimSpaces(className)
 }
 
 templ Tooltip(a TooltipAttrs) {

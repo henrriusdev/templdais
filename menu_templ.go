@@ -38,7 +38,7 @@ func (m MenuAttrs) GetClass() string {
 		class += " " + m.Class
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 type MenuItem struct {
@@ -59,7 +59,7 @@ func (m MenuItem) GetClass() string {
 		class += " " + m.Class
 	}
 
-	return class
+	return trimSpaces(class)
 }
 
 func Menu(m MenuAttrs) templ.Component {
