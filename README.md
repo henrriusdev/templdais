@@ -56,46 +56,46 @@ Here, the arguments are:
 
 ### Added 2024/04/14
 
-- [x]  Button
-- [x]  Dropdown
-- [x]  Modal
-- [x]  Kbd
-- [x]  Breadcrumbs
-- [x]  Checkbox
-- [x]  Radio
-- [x]  Accordion
-- [x]  Badge
-- [x]  Card (responsive card for now)
+- Button
+- Dropdown
+- Modal
+- Kbd
+- Breadcrumbs
+- Checkbox
+- Radio
+- Accordion
+- Badge
+- Card (responsive card for now)
 
 ### Added 2024/04/15
 
-- [x]  Table
-- [x]  Navbar
-- [x]  Pagination
-- [x]  Toast
-- [x]  File Input
-- [x]  Range
-- [x]  Select
-- [x]  Text input
-- [x]  Textarea
-- [x]  Code
+- Table
+- Navbar
+- Pagination
+- Toast
+- File Input
+- Range
+- Select
+- Text input
+- Textarea
+- Code
 
 ### Added 2024/04/19
 
-- [x]  Alert
-- [x]  Divider
-- [x]  Menu
+- Alert
+- Divider
+- Menu
 
+### Added 2024/04/27
+
+- Bottom navigation
+- Progress
+- Tooltip
 
 Comming soon:
 
-- [ ]  Bottom navigation
-- [ ]  Progress
-- [ ]  Radial Progress
-- [ ]  Tooltip
-
-**PD**: A Documentation web of *TemplDais* is incoming soon (in development)
-**PD 2**: I've plained to use or create a Icons Kit for *TemplDais*, for now, you must provide the url of the icons (svg)
+- A Documentation web of *TemplDais* is incoming soon (in development)
+- I've plained to use or create a Icons Kit for *TemplDais*, for now, you must provide the url of the icons (svg)
 
 And next (not my priority):
 
@@ -109,7 +109,7 @@ And next (not my priority):
 
 Not implementable (yet):
 
-- Countdown (sorry, templ doesn´t allows dynamic style attribute for set `--value` css variable)
+- Countdown & Radial Progress (sorry, templ doesn´t allows dynamic style attribute for set `--value` css variable)
 - Tab (it needs a tabs and tabpanel, maybe in a long future I'll work on this)
 - Timeline (for now, it includes many features that I can´t do it myself yet)
 - Indicator (it is a section with a badge... implement yourself)

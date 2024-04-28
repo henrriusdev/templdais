@@ -1,0 +1,22 @@
+package main
+
+type BottomNavAttrs struct {
+	Size       string
+	Brand      string
+	Items      []ButtonAttrs
+	ItemsAttrs templ.Attributes
+}
+
+func (btm BottomNavAttrs) GetClassName() string {
+	var class = getClassName(btm.Brand, "", btm.Size, "btm-nav")
+
+	return class
+}
+
+templ BottomNav(attrs BottomNavAttrs) {
+	<nav class={ attrs.GetClassName() }>
+		for _, item := range attrs.Items {
+			@Button(item, attrs.ItemsAttrs)
+		}
+	</nav>
+}

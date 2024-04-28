@@ -1,0 +1,20 @@
+package main
+
+type ProgressAttrs struct {
+	Progress      string // max is always 100
+	Class         string
+	Brand         string
+	Indeterminate bool
+}
+
+func (p ProgressAttrs) GetProgress() string {
+	return getClassName(p.Brand, "", "", "progress") + " " + p.Class
+}
+
+templ Progress(p ProgressAttrs) {
+	if p.Indeterminate {
+		<progress class={ p.GetProgress() }></progress>
+	} else {
+		<progress class={ p.GetProgress() } value={ p.Progress } max="100"></progress>
+	}
+}

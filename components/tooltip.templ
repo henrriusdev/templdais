@@ -1,0 +1,30 @@
+package main
+
+type TooltipAttrs struct {
+	Content  string
+	Brand    string
+	Position string
+	Class    string
+	Open     bool
+	btn      ButtonAttrs
+}
+
+func (a TooltipAttrs) GetClassName() string {
+	var className = getClassName(a.Brand, "", "", "tooltip")
+
+	if a.Position != "" {
+		className += " tooltip-" + a.Position
+	}
+
+	if a.Class != "" {
+		className += " " + a.Class
+	}
+
+	return className
+}
+
+templ Tooltip(a TooltipAttrs) {
+	<div class={ a.GetClassName() } data-tip={ a.Content }>
+		{ children... }
+	</div>
+}
