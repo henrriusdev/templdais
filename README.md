@@ -32,7 +32,7 @@ Install the UI with `go get`
 ```gohtml
 // /path/to/your/file.templ
 
-package main
+package templdais
 
 templ Page() {
     <div class="w-full h-full flex justify-center items-center">
