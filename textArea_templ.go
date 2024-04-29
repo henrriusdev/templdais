@@ -61,7 +61,7 @@ func TextArea(fma FormAttrs, attrs templ.Attributes) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(fma.FieldName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `textArea.templ`, Line: 4, Col: 137}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `textArea.templ`, Line: 4, Col: 141}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -74,7 +74,7 @@ func TextArea(fma FormAttrs, attrs templ.Attributes) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fma.FieldID)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `textArea.templ`, Line: 4, Col: 154}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `textArea.templ`, Line: 4, Col: 160}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {

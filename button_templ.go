@@ -15,6 +15,7 @@ type ButtonAttrs struct {
 	Brand   string
 	Figure  string
 	Size    string
+	Class   string
 	Outline bool
 	Active  bool
 	Link    templ.SafeURL
@@ -28,6 +29,10 @@ func (btn ButtonAttrs) GetClassName() string {
 	}
 	if btn.Active {
 		class += " btn-active"
+	}
+
+	if btn.Class != "" {
+		class += " " + btn.Class
 	}
 
 	return trimSpaces(class)

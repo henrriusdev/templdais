@@ -48,7 +48,7 @@ func Checkbox(chk FormAttrs) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(chk.Checked)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `checkbox.templ`, Line: 4, Col: 66}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `checkbox.templ`, Line: 4, Col: 68}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
