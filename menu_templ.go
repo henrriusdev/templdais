@@ -29,7 +29,7 @@ func (m MenuAttrs) GetClass() string {
 	}
 
 	if m.Vertical {
-		class += " menu-vertical"
+		class += " menu-vertical flex flex-nowrap flex-col"
 	} else {
 		class += " menu-horizontal"
 	}
