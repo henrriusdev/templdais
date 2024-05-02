@@ -14,7 +14,7 @@ func (m MenuAttrs) GetClass() string {
 		class += " menu-" + m.Size
 	}
 
-	if m.Responsive && !m.Vertical {
+	if m.Responsive {
 		class += " menu-vertical lg:menu-horizontal"
 	}
 
