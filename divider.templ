@@ -29,7 +29,7 @@ func (div DividerAttrs) GetClassName() string {
 }
 
 templ Divider(dv DividerAttrs) {
-	<div class={ dv.GetClassName() }>
+	<div class={ "divider", dv.GetClassName() }>
 		if dv.Text != "" {
 			{ dv.Text }
 		}
