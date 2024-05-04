@@ -21,7 +21,7 @@ type AlertAttrs struct {
 }
 
 func (a AlertAttrs) GetClassName() string {
-	return fmt.Sprintf("alert alert-%s %s", a.Brand, a.Class)
+	return trimSpaces(fmt.Sprintf("alert alert-%s %s", a.Brand, a.Class))
 }
 
 func Alert(art AlertAttrs) templ.Component {
