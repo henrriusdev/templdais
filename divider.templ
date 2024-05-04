@@ -11,16 +11,21 @@ type DividerAttrs struct {
 func (div DividerAttrs) GetClassName() string {
 	className := getClassName(div.Brand, "", "", "divider")
 	if div.Vertical {
-		className += "divider-vertical "
+		className += " divider-vertical"
 	} else {
-		className += "divider-horizontal "
+		className += " divider-horizontal"
 	}
 	if div.Start {
-		className += " divider-start "
+		className += " divider-start"
 	} else {
-		className += " divider-end "
+		className += " divider-end"
 	}
-	return trimSpaces(className + div.Class)
+
+	if div.Class != "" {
+		className += " " + div.Class
+	}
+
+	return trimSpaces(className)
 }
 
 templ Divider(dv DividerAttrs) {
