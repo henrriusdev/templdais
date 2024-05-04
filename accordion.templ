@@ -5,6 +5,7 @@ import "fmt"
 
 type AccordionAttrs struct {
 	Items []AccordionItem
+	Name	string
 	Class string
 }
 
@@ -49,7 +50,7 @@ templ Accordion(acc AccordionAttrs) {
 			<div
 				class={ item.GetClassName() }
 			>
-				<input type="radio" name={ formatName(item.Title, i) } checked="checked"/>
+				<input type="radio" name={ formatName(acc.Name, i) } checked="checked"/>
 				<div class="collapse-title text-xl font-medium">
 					{ item.Title }
 				</div>
