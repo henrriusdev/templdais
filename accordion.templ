@@ -46,11 +46,11 @@ func (acc AccordionItem) GetClassName() string {
 
 templ Accordion(acc AccordionAttrs) {
 	<div class={ acc.Class }>
-		for i, item := range acc.Items {
+		for _, item := range acc.Items {
 			<div
 				class={ item.GetClassName() }
 			>
-				<input type="radio" name={ formatName(acc.Name, i) }
+				<input type="radio" name={ formatName(acc.Name, 1) }
 				if item.Open {
 					checked
 				}

@@ -89,7 +89,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for i, item := range acc.Items {
+		for _, item := range acc.Items {
 			var templ_7745c5c3_Var4 = []any{item.GetClassName()}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 			if templ_7745c5c3_Err != nil {
@@ -113,7 +113,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var6 string
-			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(formatName(acc.Name, i))
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(formatName(acc.Name, 1))
 			if templ_7745c5c3_Err != nil {
 				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 53, Col: 54}
 			}
