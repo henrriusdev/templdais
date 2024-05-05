@@ -12,7 +12,7 @@ type ButtonAttrs struct {
 }
 
 func (btn ButtonAttrs) GetClassName() string {
-	var class = getClassName(btn.Brand, btn.Figure, btn.Size, "btn")
+	var class = "btn " + getClassName(btn.Brand, btn.Figure, btn.Size, "btn")
 
 	if btn.Outline {
 		class += " btn-outline"
@@ -67,6 +67,7 @@ templ Button(btn ButtonAttrs, attrs templ.Attributes) {
 			</button>
 		case "anchor":
 			<a
+			{ attrs...}
 				href={ btn.Link }
 				class={ btn.GetClassName() }
 			>

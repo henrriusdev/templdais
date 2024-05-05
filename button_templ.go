@@ -22,7 +22,7 @@ type ButtonAttrs struct {
 }
 
 func (btn ButtonAttrs) GetClassName() string {
-	var class = getClassName(btn.Brand, btn.Figure, btn.Size, "btn")
+	var class = "btn " + getClassName(btn.Brand, btn.Figure, btn.Size, "btn")
 
 	if btn.Outline {
 		class += " btn-outline"
@@ -124,7 +124,15 @@ func Button(btn ButtonAttrs, attrs templ.Attributes) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templ.RenderAttributes(ctx, templ_7745c5c3_Buffer, attrs)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

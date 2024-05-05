@@ -9,6 +9,7 @@ type TableAttrs struct {
 	PinColumns bool
 	PinRows    bool
 	Size       string
+	Class string
 }
 
 func (t TableAttrs) GetTableClass() string {
@@ -29,6 +30,10 @@ func (t TableAttrs) GetTableClass() string {
 		class += " table-pin-rows"
 	}
 
+	if t.Class != "" {
+		class += " " + t.Class
+	}
+
 	return trimSpaces(class)
 }
 
@@ -45,14 +50,10 @@ templ Table(tb TableAttrs) {
 			</thead>
 			<tbody>
 				<!-- rows -->
-				for i, row := range tb.Rows {
+				for _, row := range tb.Rows {
 					<tr>
 						for _, col := range tb.Columns {
-							if i == 0 {
-								<th>{ row[col] }</th>
-							} else {
 								<td>{ row[col] }</td>
-							}
 						}
 					</tr>
 				}
