@@ -39,22 +39,20 @@ func (acc AccordionItem) GetClassName() string {
 	return trimSpaces(class)
 }
 
-func (acc AccordionAttrs) GetClassName() string {
-	var class = "accordion"
-
+func (acc *AccordionAttrs) GetClassName() string {
 	if acc.Arrow {
-		class += " accordion-arrow"
+		for i := range acc.Items {
+			acc.Items[i].Class += " collapse-arrow"
+		}
 	}
 
 	if acc.PlusMinus {
-		class += " accordion-plus-minus"
+		for i := range acc.Items {
+			acc.Items[i].Class += " collapse-plus-minus"
+		}
 	}
 
-	if acc.Class != "" {
-		class += " " + acc.Class
-	}
-
-	return trimSpaces(class)
+	return trimSpaces(acc.Class)
 }
 
 templ Accordion(acc AccordionAttrs) {

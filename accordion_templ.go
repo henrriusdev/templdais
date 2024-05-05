@@ -49,22 +49,20 @@ func (acc AccordionItem) GetClassName() string {
 	return trimSpaces(class)
 }
 
-func (acc AccordionAttrs) GetClassName() string {
-	var class = "accordion"
-
+func (acc *AccordionAttrs) GetClassName() string {
 	if acc.Arrow {
-		class += " accordion-arrow"
+		for i := range acc.Items {
+			acc.Items[i].Class += " collapse-arrow"
+		}
 	}
 
 	if acc.PlusMinus {
-		class += " accordion-plus-minus"
+		for i := range acc.Items {
+			acc.Items[i].Class += " collapse-plus-minus"
+		}
 	}
 
-	if acc.Class != "" {
-		class += " " + acc.Class
-	}
-
-	return trimSpaces(class)
+	return trimSpaces(acc.Class)
 }
 
 func Accordion(acc AccordionAttrs) templ.Component {
@@ -128,7 +126,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(formatName(acc.Name, 1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 68, Col: 35}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 66, Col: 35}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
@@ -151,7 +149,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 74, Col: 17}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 72, Col: 17}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
