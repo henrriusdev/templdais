@@ -48,24 +48,6 @@ func (acc *AccordionAttrs) GetClassName() string {
 	return trimSpaces(acc.Class)
 }
 
-script AlterClassName(id string) {
-    let element = document.getElementById(id);
-    let parent = element.parentElement;
-    const allRadios = document.querySelectorAll(`input[name="${element.name}"]`);
-
-    allRadios.forEach(radio => {
-        if (radio.id !== element.id) { // Solo cambia los que no son el seleccionado
-            radio.checked = false;
-            radio.parentElement.classList.remove('collapse-open');
-            radio.parentElement.classList.add('collapse-close');
-        } else { // Solo al seleccionado le agregamos la clase 'collapse-open'
-						radio.checked = "checked";
-            radio.parentElement.classList.remove('collapse-close');
-            radio.parentElement.classList.add('collapse-open');
-        }
-    });
-}
-
 templ Accordion(acc AccordionAttrs) {
 	<div class={ acc.GetClassName() }>
 		for i, item := range acc.Items {
@@ -76,7 +58,6 @@ templ Accordion(acc AccordionAttrs) {
 					type="radio"
 					name={ formatName(acc.Name, 1) }
 					id={ formatName(acc.Name, i) }
-				onclick={ AlterClassName(formatName(acc.Name, i)) }
 					if item.Open {
 						checked="checked"
 					}
