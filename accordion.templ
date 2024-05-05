@@ -58,6 +58,10 @@ func (acc *AccordionAttrs) GetClassName() string {
 script AlterClassName(id string) {
 	let element = document.getElementById(id)
 	let parent = element.parentElement
+	const allRadios = document.querySelectorAll(`input[name="${element.name}"]`)
+	allRadios.forEach(radio => {
+		radio.checked = false
+	})
 
 	if (element.checked) {
 		parent.classList.add('collapse-open')
