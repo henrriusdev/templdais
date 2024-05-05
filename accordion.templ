@@ -73,12 +73,12 @@ templ Accordion(acc AccordionAttrs) {
 		for i, item := range acc.Items {
 			<div
 				class={ item.GetClassName() }
-				onclick={ AlterClassName(formatName(acc.Name, i)) }
 			>
 				<input
 					type="radio"
 					name={ formatName(acc.Name, 1) }
 					id={ formatName(acc.Name, i) }
+				onchange={ AlterClassName(formatName(acc.Name, i)) }
 					if item.Open {
 						checked="checked"
 					}
