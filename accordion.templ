@@ -55,15 +55,30 @@ func (acc *AccordionAttrs) GetClassName() string {
 	return trimSpaces(acc.Class)
 }
 
+script AlterClassName(id string) {
+	let element = document.getElementById(id)
+	let parent = element.parentElement
+
+	if (element.checked) {
+		parent.classList.add('collapse-open')
+		parent.classList.remove('collapse-close')
+	} else {
+		parent.classList.add('collapse-close')
+		parent.classList.remove('collapse-open')
+	}
+}
+
 templ Accordion(acc AccordionAttrs) {
 	<div class={ acc.GetClassName() }>
-		for _, item := range acc.Items {
+		for i, item := range acc.Items {
 			<div
 				class={ item.GetClassName() }
 			>
 				<input
 					type="radio"
 					name={ formatName(acc.Name, 1) }
+					id={ formatName(acc.Name, i) }
+					onchange={ AlterClassName(formatName(acc.Name, i)) }
 					if item.Open {
 						checked="checked"
 					}

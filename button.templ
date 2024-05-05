@@ -9,6 +9,7 @@ type ButtonAttrs struct {
 	Outline bool
 	Active  bool
 	Link    templ.SafeURL
+	Click templ.ComponentScript
 }
 
 func (btn ButtonAttrs) GetClassName() string {
@@ -62,6 +63,7 @@ templ Button(btn ButtonAttrs, attrs templ.Attributes) {
 				{ attrs... }
 				type="button"
 				class={ btn.GetClassName() }
+				onclick={ btn.Click }
 			>
 				{ children... }
 			</button>
@@ -78,6 +80,7 @@ templ Button(btn ButtonAttrs, attrs templ.Attributes) {
 				{ attrs... }
 				type="button"
 				class={ btn.GetClassName() }
+				onclick={ btn.Click }
 			>
 				{ children... }
 			</button>
