@@ -59,6 +59,7 @@ script AlterClassName(id string) {
             radio.parentElement.classList.remove('collapse-open');
             radio.parentElement.classList.add('collapse-close');
         } else { // Solo al seleccionado le agregamos la clase 'collapse-open'
+						radio.checked = "checked";
             radio.parentElement.classList.remove('collapse-close');
             radio.parentElement.classList.add('collapse-open');
         }
@@ -75,7 +76,7 @@ templ Accordion(acc AccordionAttrs) {
 					type="radio"
 					name={ formatName(acc.Name, 1) }
 					id={ formatName(acc.Name, i) }
-				onchange={ AlterClassName(formatName(acc.Name, i)) }
+				onclick={ AlterClassName(formatName(acc.Name, i)) }
 					if item.Open {
 						checked="checked"
 					}

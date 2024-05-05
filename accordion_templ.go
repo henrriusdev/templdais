@@ -60,8 +60,8 @@ func (acc *AccordionAttrs) GetClassName() string {
 
 func AlterClassName(id string) templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_AlterClassName_43d6`,
-		Function: `function __templ_AlterClassName_43d6(id){let element = document.getElementById(id);
+		Name: `__templ_AlterClassName_d579`,
+		Function: `function __templ_AlterClassName_d579(id){let element = document.getElementById(id);
     let parent = element.parentElement;
     const allRadios = document.querySelectorAll(` + "`" + `input[name="${element.name}"]` + "`" + `);
 
@@ -71,13 +71,14 @@ func AlterClassName(id string) templ.ComponentScript {
             radio.parentElement.classList.remove('collapse-open');
             radio.parentElement.classList.add('collapse-close');
         } else { // Solo al seleccionado le agregamos la clase 'collapse-open'
+						radio.checked = "checked";
             radio.parentElement.classList.remove('collapse-close');
             radio.parentElement.classList.add('collapse-open');
         }
     });
 }`,
-		Call:       templ.SafeScript(`__templ_AlterClassName_43d6`, id),
-		CallInline: templ.SafeScriptInline(`__templ_AlterClassName_43d6`, id),
+		Call:       templ.SafeScript(`__templ_AlterClassName_d579`, id),
+		CallInline: templ.SafeScriptInline(`__templ_AlterClassName_d579`, id),
 	}
 }
 
@@ -150,7 +151,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(formatName(acc.Name, 1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 76, Col: 35}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 77, Col: 35}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
@@ -163,13 +164,13 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(formatName(acc.Name, i))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 77, Col: 33}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 78, Col: 33}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" onchange=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" onclick=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -195,7 +196,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 84, Col: 17}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 85, Col: 17}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
