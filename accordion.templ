@@ -4,19 +4,19 @@ import "strings"
 import "fmt"
 
 type AccordionAttrs struct {
-	Items []AccordionItem
-	Name	string
-	Class string
+	Items     []AccordionItem
+	Name      string
+	Class     string
+	Arrow     bool
+	PlusMinus bool
 }
 
 type AccordionItem struct {
-	Title     string
-	Content   string
-	Arrow     bool
-	PlusMinus bool
-	Open      bool
-	Close     bool
-	Class     string
+	Title   string
+	Content templ.Component
+	Open    bool
+	Close   bool
+	Class   string
 }
 
 func formatName(name string, index int) string {
@@ -25,11 +25,6 @@ func formatName(name string, index int) string {
 
 func (acc AccordionItem) GetClassName() string {
 	var class = "collapse bg-base-200"
-	if acc.Arrow {
-		class += " collapse-arrow"
-	} else if acc.PlusMinus {
-		class += " collapse-plus"
-	}
 
 	if acc.Open {
 		class += " collapse-open"
@@ -44,22 +39,42 @@ func (acc AccordionItem) GetClassName() string {
 	return trimSpaces(class)
 }
 
+func (acc AccordionAttrs) GetClassName() string {
+	var class = "accordion"
+
+	if acc.Arrow {
+		class += " accordion-arrow"
+	}
+
+	if acc.PlusMinus {
+		class += " accordion-plus-minus"
+	}
+
+	if acc.Class != "" {
+		class += " " + acc.Class
+	}
+
+	return trimSpaces(class)
+}
+
 templ Accordion(acc AccordionAttrs) {
-	<div class={ acc.Class }>
+	<div class={ acc.GetClassName() }>
 		for _, item := range acc.Items {
 			<div
 				class={ item.GetClassName() }
 			>
-				<input type="radio" name={ formatName(acc.Name, 1) }
-				if item.Open {
-					checked
-				}
+				<input
+					type="radio"
+					name={ formatName(acc.Name, 1) }
+					if item.Open {
+						checked="checked"
+					}
 				/>
 				<div class="collapse-title text-xl font-medium">
 					{ item.Title }
 				</div>
 				<div class="collapse-content">
-					<p>{ item.Content }</p>
+					@item.Content
 				</div>
 			</div>
 		}

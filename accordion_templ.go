@@ -14,19 +14,19 @@ import "strings"
 import "fmt"
 
 type AccordionAttrs struct {
-	Items []AccordionItem
-	Name  string
-	Class string
+	Items     []AccordionItem
+	Name      string
+	Class     string
+	Arrow     bool
+	PlusMinus bool
 }
 
 type AccordionItem struct {
-	Title     string
-	Content   string
-	Arrow     bool
-	PlusMinus bool
-	Open      bool
-	Close     bool
-	Class     string
+	Title   string
+	Content templ.Component
+	Open    bool
+	Close   bool
+	Class   string
 }
 
 func formatName(name string, index int) string {
@@ -35,16 +35,29 @@ func formatName(name string, index int) string {
 
 func (acc AccordionItem) GetClassName() string {
 	var class = "collapse bg-base-200"
-	if acc.Arrow {
-		class += " collapse-arrow"
-	} else if acc.PlusMinus {
-		class += " collapse-plus"
-	}
 
 	if acc.Open {
 		class += " collapse-open"
 	} else if acc.Close {
 		class += " collapse-close"
+	}
+
+	if acc.Class != "" {
+		class += " " + acc.Class
+	}
+
+	return trimSpaces(class)
+}
+
+func (acc AccordionAttrs) GetClassName() string {
+	var class = "accordion"
+
+	if acc.Arrow {
+		class += " accordion-arrow"
+	}
+
+	if acc.PlusMinus {
+		class += " accordion-plus-minus"
 	}
 
 	if acc.Class != "" {
@@ -67,7 +80,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{acc.Class}
+		var templ_7745c5c3_Var2 = []any{acc.GetClassName()}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -115,7 +128,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(formatName(acc.Name, 1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 53, Col: 54}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 68, Col: 35}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
@@ -126,7 +139,7 @@ func Accordion(acc AccordionAttrs) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			if item.Open {
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" checked")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" checked=\"checked\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -138,26 +151,21 @@ func Accordion(acc AccordionAttrs) templ.Component {
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(item.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 59, Col: 17}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 74, Col: 17}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"collapse-content\"><p>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"collapse-content\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var8 string
-			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(item.Content)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `accordion.templ`, Line: 62, Col: 22}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+			templ_7745c5c3_Err = item.Content.Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
