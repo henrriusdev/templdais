@@ -60,16 +60,12 @@ script AlterClassName(id string) {
 	let parent = element.parentElement
 	const allRadios = document.querySelectorAll(`input[name="${element.name}"]`)
 	allRadios.forEach(radio => {
-		radio.checked = false
+		if (radio.checked && radio.id !== element.id) {
+			radio.checked = false
+			radio.parentElement.classList.remove('collapse-open')
+			radio.parentElement.classList.add('collapse-close')
+		}
 	})
-
-	if (element.checked) {
-		parent.classList.add('collapse-open')
-		parent.classList.remove('collapse-close')
-	} else {
-		parent.classList.add('collapse-close')
-		parent.classList.remove('collapse-open')
-	}
 }
 
 templ Accordion(acc AccordionAttrs) {
