@@ -15,7 +15,6 @@ type AccordionItem struct {
 	Title   string
 	Content templ.Component
 	Open    bool
-	Close   bool
 	Class   string
 }
 
@@ -25,12 +24,6 @@ func formatName(name string, index int) string {
 
 func (acc AccordionItem) GetClassName() string {
 	var class = "collapse bg-base-200"
-
-	if acc.Open {
-		class += " collapse-open"
-	} else if acc.Close {
-		class += " collapse-close"
-	}
 
 	if acc.Class != "" {
 		class += " " + acc.Class
@@ -60,7 +53,7 @@ script AlterClassName(id string) {
 	let parent = element.parentElement
 	const allRadios = document.querySelectorAll(`input[name="${element.name}"]`)
 	allRadios.forEach(radio => {
-		if (radio.checked && radio.id !== element.id) {
+		if (radio.checked || radio.id !== element.id) {
 			radio.checked = false
 			radio.parentElement.classList.remove('collapse-open')
 			radio.parentElement.classList.add('collapse-close')
