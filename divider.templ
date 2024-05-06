@@ -4,6 +4,7 @@ type DividerAttrs struct {
 	Brand    string
 	Vertical bool
 	Start    bool
+	End      bool
 	Text     string
 	Class    string
 }
@@ -17,7 +18,9 @@ func (div DividerAttrs) GetClassName() string {
 	}
 	if div.Start {
 		className += " divider-start"
-	} else {
+	}
+
+	if div.End {
 		className += " divider-end"
 	}
 

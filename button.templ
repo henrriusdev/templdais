@@ -9,7 +9,7 @@ type ButtonAttrs struct {
 	Outline bool
 	Active  bool
 	Link    templ.SafeURL
-	Click templ.ComponentScript
+	Click   templ.ComponentScript
 }
 
 func (btn ButtonAttrs) GetClassName() string {
@@ -69,7 +69,7 @@ templ Button(btn ButtonAttrs, attrs templ.Attributes) {
 			</button>
 		case "anchor":
 			<a
-			{ attrs...}
+				{ attrs... }
 				href={ btn.Link }
 				class={ btn.GetClassName() }
 			>

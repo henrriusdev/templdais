@@ -1,5 +1,12 @@
 package templdais
 
 templ Checkbox(chk FormAttrs) {
-	<input type="checkbox" name={ chk.FieldName } checked={ chk.Checked } class={ chk.GetClassName("checkbox") }/>
+	<input
+		type="checkbox"
+		name={ chk.FieldName }
+		class={ "checkbox", chk.GetClassName("checkbox") }
+		if chk.Checked != "" {
+			checked
+		}
+	/>
 }

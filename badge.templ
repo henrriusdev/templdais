@@ -24,6 +24,6 @@ func (bdg BadgeAttrs) GetClassName() string {
 
 templ Badge(bdg BadgeAttrs) {
 	<span
-		class={ bdg.GetClassName() }
+		class={ "badge", bdg.GetClassName() }
 	>{ bdg.Text }</span>
 }
