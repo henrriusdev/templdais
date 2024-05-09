@@ -70,14 +70,18 @@ templ Navbar(nb NavbarAttrs) {
 				<a class="form-control">
 					<input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto"/>
 				</a>
-				@DropdownMenu(DropdownAttrs{Position: "end", Items: nb.Items})
+				@DropdownMenu(DropdownAttrs{Position: "end", Items: nb.Items}){
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
+				}
 			</section>
 		</nav>
 	}
 	if nb.Centered {
 		<div class={ nb.GetClassName() }>
 			<div class="navbar-start">
-				@DropdownMenu(DropdownAttrs{Position: "start", Items: nb.Items})
+				@DropdownMenu(DropdownAttrs{Position: "start", Items: nb.Items}){
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
+				}
 			</div>
 			<div class="navbar-center">
 				<a class="btn btn-ghost text-xl">{ nb.Title }</a>
