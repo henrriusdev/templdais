@@ -21,11 +21,10 @@ type DividerAttrs struct {
 
 func (div DividerAttrs) GetClassName() string {
 	className := getClassName(div.Brand, "", "", "divider")
-	if div.Vertical {
-		className += " divider-vertical"
-	} else {
+	if !div.Vertical {
 		className += " divider-horizontal"
 	}
+
 	if div.Start {
 		className += " divider-start"
 	}
@@ -80,7 +79,7 @@ func Divider(dv DividerAttrs) templ.Component {
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(dv.Text)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `divider.templ`, Line: 37, Col: 12}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `divider.templ`, Line: 36, Col: 12}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {

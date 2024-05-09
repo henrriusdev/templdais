@@ -11,11 +11,10 @@ type DividerAttrs struct {
 
 func (div DividerAttrs) GetClassName() string {
 	className := getClassName(div.Brand, "", "", "divider")
-	if div.Vertical {
-		className += " divider-vertical"
-	} else {
+	if !div.Vertical {
 		className += " divider-horizontal"
 	}
+
 	if div.Start {
 		className += " divider-start"
 	}
