@@ -27,7 +27,7 @@ func (attrs *DropdownAttrs) GetClassName() string {
 
 templ DropdownMenu(attrs DropdownAttrs) {
 	<div class="dropdown">
-		<div tabindex="0" role="button" class="btn m-1">Click</div> <!-- Dropdown button, srry, safari issues -->
+		<div tabindex="0" role="button" class="btn m-1">{children...}</div> <!-- Dropdown button, srry, safari issues -->
 		<ul
 			tabindex="0"
 			class={ attrs.GetClassName() }
