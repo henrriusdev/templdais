@@ -1,4 +1,4 @@
-module github.com/hbourgeot/templdais
+module github.com/henrriusdev/templdais
 
 go 1.22
 
