@@ -6,18 +6,18 @@ type CodeAttrs struct {
 	Text   string
 	Class  string
 
-	Codes []Codes
+	LineCode []LineCode
 }
 
-type Codes struct {
-	Code   string
+type LineCode struct {
+	Text   string
 	Prefix string
 	Brand  string
 	Size   string
 	Class  string
 }
 
-func (code Codes) GetClassName() string {
+func (code LineCode) GetClassName() string {
 	var className = getClassName(code.Brand, "", code.Size, "text")
 
 	if code.Class != "" {
@@ -29,9 +29,9 @@ func (code Codes) GetClassName() string {
 
 templ Code(cd CodeAttrs) {
 	<div class={ "mockup-code " + cd.Class }>
-		if len(cd.Codes) > 0 {
-			for _, c := range cd.Codes {
-				<pre data-prefix={ c.Prefix } class={ c.GetClassName() }><code>{ c.Code }</code></pre>
+		if len(cd.LineCode) > 0 {
+			for _, c := range cd.LineCode {
+				<pre data-prefix={ c.Prefix } class={ c.GetClassName() }><code>{ c.Text }</code></pre>
 			}
 		} else {
 			<pre data-prefix={ cd.Prefix } class={  }><code>{ cd.Text }</code></pre>

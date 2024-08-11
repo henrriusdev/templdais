@@ -55,7 +55,7 @@ func (m MenuItem) GetClass() string {
 templ Menu(m MenuAttrs) {
 	<ul class={ m.GetClass() }>
 		for _, item := range m.Items {
-			<li class={ item.Class }>
+			<li class={ item.GetClass() }>
 				if item.Disabled {
 					<span>{ item.Text }</span>
 				} else {
