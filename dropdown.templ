@@ -6,9 +6,14 @@ type DropdownAttrs struct {
 	End      bool
 	Hover    bool
 	Class    string
+	BtnBrand string
+	BtnSize  string
 }
 
 func (attrs *DropdownAttrs) GetClassName() string {
+	if attrs.Position == "" {
+		attrs.Position = "bottom"
+	}
 	var class = `dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 dropdown-` + attrs.Position
 	if attrs.End {
 		class += ` dropdown-end`
@@ -27,7 +32,7 @@ func (attrs *DropdownAttrs) GetClassName() string {
 
 templ DropdownMenu(attrs DropdownAttrs) {
 	<div class="dropdown">
-		<div tabindex="0" role="button" class="btn m-1">{children...}</div> <!-- Dropdown button, srry, safari issues -->
+		<div tabindex="0" role="button" class={"btn m-1 " + getClassName(attrs.BtnBrand, "", attrs.BtnSize, "btn")}>{children...}</div> <!-- Dropdown button, srry, safari issues -->
 		<ul
 			tabindex="0"
 			class={ attrs.GetClassName() }
