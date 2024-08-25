@@ -24,7 +24,7 @@
 Install the UI with `go get`
 
 ```bash
-  go get github.com/hbourgeot/templdais
+  go get github.com/henrriusdev/templdais
 ```
     
 ## Demo
