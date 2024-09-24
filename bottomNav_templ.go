@@ -31,18 +31,15 @@ func (btm BottomNavAttrs) GetClassName() string {
 	return trimSpaces(class)
 }
 
-func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
-	return ButtonAttrs{
-		Class:   item.Button.Class + " text-" + brand,
-		Size:    item.Button.Size,
-		Brand:   "",
-		Figure:  item.Button.Figure,
-		Type:    item.Button.Type,
-		Outline: item.Button.Outline,
-		Active:  item.Button.Active,
-		Link:    item.Button.Link,
-		Click:   item.Button.Click,
+func (item BtmNavItem) GetClassName(brand string) string {
+	var class = getClassName(brand, item.Button.Figure, item.Button.Size, "text")
+
+	if item.Button.Class != "" {
+		class += " " + item.Button.Class
 	}
+
+	return trimSpaces(class)
+
 }
 
 func BottomNav(attrs BottomNavAttrs) templ.Component {
@@ -86,7 +83,7 @@ func BottomNav(attrs BottomNavAttrs) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, item := range attrs.Items {
-			var templ_7745c5c3_Var4 = []any{item.GetButtonAttrs(attrs.Brand).GetClassName()}
+			var templ_7745c5c3_Var4 = []any{item.GetClassName(attrs.Brand)}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err

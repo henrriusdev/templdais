@@ -23,18 +23,15 @@ func (btm BottomNavAttrs) GetClassName() string {
 	return trimSpaces(class)
 }
 
-func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
-	return ButtonAttrs{
-		Class:  item.Button.Class + " text-" + brand,
-		Size:  item.Button.Size,
-		Brand: "",
-		Figure: item.Button.Figure,
-		Type: item.Button.Type,
-		Outline: item.Button.Outline,
-		Active: item.Button.Active,
-		Link: item.Button.Link,
-		Click: item.Button.Click,
+func (item BtmNavItem) GetClassName(brand string) string {
+	var class = getClassName(brand, item.Button.Figure, item.Button.Size, "text")
+
+	if item.Button.Class != "" {
+		class += " " + item.Button.Class
 	}
+
+	return trimSpaces(class)
+	
 }
 
 
@@ -43,7 +40,7 @@ templ BottomNav(attrs BottomNavAttrs) {
 		for _, item := range attrs.Items {
 			<button 
 			{item.Attrs...}
-			class={ item.GetButtonAttrs(attrs.Brand).GetClassName() } >
+			class={ item.GetClassName(attrs.Brand) }>
 				@item.Body
 			</button>
 		}
