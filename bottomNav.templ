@@ -14,7 +14,7 @@ type BtmNavItem struct {
 }
 
 func (btm BottomNavAttrs) GetClassName() string {
-	var class = getClassName(btm.Brand, "", btm.Size, "btm-nav")
+	var class = "btm-nav" + getClassName("", btm.Size, "", "btm-nav")
 
 	if btm.Class != "" {
 		class += ` ` + btm.Class
@@ -23,9 +23,25 @@ func (btm BottomNavAttrs) GetClassName() string {
 	return trimSpaces(class)
 }
 
+func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
+	return ButtonAttrs{
+		Class:  item.Button.Class,
+		Size:  item.Button.Size,
+		Brand: brand,
+		Figure: item.Button.Figure,
+		Type: item.Button.Type,
+		Outline: item.Button.Outline,
+		Active: item.Button.Active,
+		Link: item.Button.Link,
+		Click: item.Button.Click,
+	}
+}
+
 templ BottomNav(attrs BottomNavAttrs) {
 	<nav class={ attrs.GetClassName() }>
 		for _, item := range attrs.Items {
+			var button = item.Button
+			button.Brand = attrs.Brand
 			@Button(item.Button, item.Attrs) {
 				@item.Body
 			}

@@ -22,13 +22,27 @@ type BtmNavItem struct {
 }
 
 func (btm BottomNavAttrs) GetClassName() string {
-	var class = getClassName(btm.Brand, "", btm.Size, "btm-nav")
+	var class = "btm-nav" + getClassName("", btm.Size, "", "btm-nav")
 
 	if btm.Class != "" {
 		class += ` ` + btm.Class
 	}
 
 	return trimSpaces(class)
+}
+
+func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
+	return ButtonAttrs{
+		Class:   item.Button.Class,
+		Size:    item.Button.Size,
+		Brand:   brand,
+		Figure:  item.Button.Figure,
+		Type:    item.Button.Type,
+		Outline: item.Button.Outline,
+		Active:  item.Button.Active,
+		Link:    item.Button.Link,
+		Click:   item.Button.Click,
+	}
 }
 
 func BottomNav(attrs BottomNavAttrs) templ.Component {
@@ -72,6 +86,10 @@ func BottomNav(attrs BottomNavAttrs) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for _, item := range attrs.Items {
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("var button = item.Button button.Brand = attrs.Brand")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			templ_7745c5c3_Var4 := templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 				templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 				templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
