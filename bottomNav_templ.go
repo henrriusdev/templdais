@@ -12,11 +12,11 @@ type BottomNavAttrs struct {
 	Size  string
 	Brand string
 	Items []BtmNavItem
+	Class string
 }
 
 type BtmNavItem struct {
-	Text   string
-	Class  string
+	Body   templ.Component
 	Button ButtonAttrs
 	Attrs  templ.Attributes
 }
@@ -24,7 +24,11 @@ type BtmNavItem struct {
 func (btm BottomNavAttrs) GetClassName() string {
 	var class = getClassName(btm.Brand, "", btm.Size, "btm-nav")
 
-	return class
+	if btm.Class != "" {
+		class += ` ` + btm.Class
+	}
+
+	return trimSpaces(class)
 }
 
 func BottomNav(attrs BottomNavAttrs) templ.Component {
@@ -80,12 +84,7 @@ func BottomNav(attrs BottomNavAttrs) templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				var templ_7745c5c3_Var5 string
-				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(item.Text)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `bottomNav.templ`, Line: 26, Col: 15}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+				templ_7745c5c3_Err = item.Body.Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

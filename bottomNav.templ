@@ -4,11 +4,11 @@ type BottomNavAttrs struct {
 	Size  string
 	Brand string
 	Items []BtmNavItem
+	Class string
 }
 
 type BtmNavItem struct {
-	Text   string
-	Class  string
+	Body  templ.Component
 	Button ButtonAttrs
 	Attrs  templ.Attributes
 }
@@ -16,14 +16,18 @@ type BtmNavItem struct {
 func (btm BottomNavAttrs) GetClassName() string {
 	var class = getClassName(btm.Brand, "", btm.Size, "btm-nav")
 
-	return class
+	if btm.Class != "" {
+		class += ` ` + btm.Class
+	}
+
+	return trimSpaces(class)
 }
 
 templ BottomNav(attrs BottomNavAttrs) {
 	<nav class={ attrs.GetClassName() }>
 		for _, item := range attrs.Items {
 			@Button(item.Button, item.Attrs) {
-				{ item.Text }
+				@item.Body
 			}
 		}
 	</nav>
