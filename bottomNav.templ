@@ -55,7 +55,7 @@ func (item BtmNavItem) GetAttrs(brand string) templ.Attributes {
 templ BottomNav(attrs BottomNavAttrs) {
 	<nav class={ attrs.GetClassName() }>
 		for _, item := range attrs.Items {
-			@Button(item.GetButtonAttrs(attrs.Brand), item.Attrs) {
+			@Button(item.GetButtonAttrs(attrs.Brand), item.GetAttrs(attrs.Brand)) {
 				@item.Body
 			}
 		}
