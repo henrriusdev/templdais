@@ -40,9 +40,7 @@ func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
 templ BottomNav(attrs BottomNavAttrs) {
 	<nav class={ attrs.GetClassName() }>
 		for _, item := range attrs.Items {
-			var button = item.Button
-			button.Brand = attrs.Brand
-			@Button(item.Button, item.Attrs) {
+			@Button(item.GetButtonAttrs(attrs.Brand), item.Attrs) {
 				@item.Body
 			}
 		}
