@@ -33,9 +33,9 @@ func (btm BottomNavAttrs) GetClassName() string {
 
 func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
 	return ButtonAttrs{
-		Class:   item.Button.Class,
+		Class:   item.Button.Class + " text-" + brand,
 		Size:    item.Button.Size,
-		Brand:   brand,
+		Brand:   "",
 		Figure:  item.Button.Figure,
 		Type:    item.Button.Type,
 		Outline: item.Button.Outline,
@@ -43,21 +43,6 @@ func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
 		Link:    item.Button.Link,
 		Click:   item.Button.Click,
 	}
-}
-
-func (item BtmNavItem) GetAttrs(brand string) templ.Attributes {
-	var class = "text-" + brand
-	if item.Button.Class != "" {
-		class += ` ` + item.Button.Class
-	}
-
-	if item.Attrs == nil {
-		item.Attrs = templ.Attributes{}
-	}
-
-	item.Attrs["class"] = class
-
-	return item.Attrs
 }
 
 func BottomNav(attrs BottomNavAttrs) templ.Component {
@@ -119,7 +104,7 @@ func BottomNav(attrs BottomNavAttrs) templ.Component {
 				}
 				return templ_7745c5c3_Err
 			})
-			templ_7745c5c3_Err = Button(item.GetButtonAttrs(attrs.Brand), item.GetAttrs(attrs.Brand)).Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = Button(item.GetButtonAttrs(attrs.Brand), item.Attrs).Render(templ.WithChildren(ctx, templ_7745c5c3_Var4), templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
