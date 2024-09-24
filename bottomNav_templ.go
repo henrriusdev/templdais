@@ -45,6 +45,21 @@ func (item BtmNavItem) GetButtonAttrs(brand string) ButtonAttrs {
 	}
 }
 
+func (item BtmNavItem) GetAttrs(brand string) templ.Attributes {
+	var class = "text-" + brand
+	if item.Button.Class != "" {
+		class += ` ` + item.Button.Class
+	}
+
+	if item.Attrs == nil {
+		item.Attrs = templ.Attributes{}
+	}
+
+	item.Attrs["class"] = class
+
+	return item.Attrs
+}
+
 func BottomNav(attrs BottomNavAttrs) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
