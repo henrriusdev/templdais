@@ -27,9 +27,11 @@ type FormAttrs struct {
 	FieldID       string
 	FieldBrand    string
 	FieldSize     string
+	FieldBordered bool
+	FieldDisabled bool
+	FieldGhost    bool
 	Checked       string
 	Class         string
-	FieldBordered bool
 	Options       Options
 	Placeholder   string
 }
@@ -38,6 +40,14 @@ func (f FormAttrs) GetClassName(prefix string) string {
 	class := getClassName(f.FieldBrand, "", f.FieldSize, prefix)
 	if f.FieldBordered {
 		class += " " + prefix + "-bordered"
+	}
+
+	if f.FieldDisabled {
+		class += " " + prefix + "-disabled"
+	}
+
+	if f.FieldGhost {
+		class += " " + prefix + "-ghost"
 	}
 
 	if f.Class != "" {

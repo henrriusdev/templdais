@@ -2,5 +2,5 @@ package templdais
 
 
 templ FileInput(fi FormAttrs, attrs templ.Attributes) {
-	<input type="file" class={ fi.GetClassName("file-input") } { attrs... }/>
+	<input type="file" class={ fi.GetClassName("file-input") } id={fi.FieldID} name={fi.FieldName} { attrs... }/>
 }
