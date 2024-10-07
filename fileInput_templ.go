@@ -8,28 +8,7 @@ package templdais
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-type FileInputAttrs struct {
-	Brand  string
-	Size   string
-	Border string
-	Class  string
-}
-
-func (f FileInputAttrs) GetClassname() string {
-	var class = "file-input " + getClassName(f.Brand, "", f.Size, "file-input")
-
-	if f.Border != "" {
-		class += " file-input-bordered"
-	}
-
-	if f.Class != "" {
-		class += " " + f.Class
-	}
-
-	return trimSpaces(class)
-}
-
-func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {
+func FileInput(fi FormAttrs, attrs templ.Attributes) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
@@ -47,7 +26,7 @@ func FileInput(fi FileInputAttrs, attrs templ.Attributes) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{fi.GetClassname()}
+		var templ_7745c5c3_Var2 = []any{fi.GetClassName("file-input")}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
