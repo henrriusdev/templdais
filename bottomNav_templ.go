@@ -19,6 +19,24 @@ type BtmNavItem struct {
 	Body   templ.Component
 	Button ButtonAttrs
 	Attrs  templ.Attributes
+	Active bool
+}
+
+func SetActive(index int) templ.ComponentScript {
+	return templ.ComponentScript{
+		Name: `__templ_SetActive_1d03`,
+		Function: `function __templ_SetActive_1d03(index){var items = document.querySelectorAll('.btm-nav button')
+    items.forEach((item, i) => {
+        if (i === index) {
+            item.classList.add('active')
+        } else {
+            item.classList.remove('active')
+        }
+    })
+}`,
+		Call:       templ.SafeScript(`__templ_SetActive_1d03`, index),
+		CallInline: templ.SafeScriptInline(`__templ_SetActive_1d03`, index),
+	}
 }
 
 func (btm BottomNavAttrs) GetClassName() string {
@@ -82,9 +100,13 @@ func BottomNav(attrs BottomNavAttrs) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		for _, item := range attrs.Items {
+		for i, item := range attrs.Items {
 			var templ_7745c5c3_Var4 = []any{item.GetClassName(attrs.Brand)}
 			templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templ.RenderScriptItems(ctx, templ_7745c5c3_Buffer, SetActive(i))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -96,16 +118,25 @@ func BottomNav(attrs BottomNavAttrs) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" class=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" onfocus=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var4).String())
+			var templ_7745c5c3_Var5 templ.ComponentScript = SetActive(i)
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var5.Call)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" class=\"")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var6 string
+			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(templ.CSSClasses(templ_7745c5c3_Var4).String())
 			if templ_7745c5c3_Err != nil {
 				return templ.Error{Err: templ_7745c5c3_Err, FileName: `bottomNav.templ`, Line: 1, Col: 0}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

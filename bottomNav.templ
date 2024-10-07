@@ -11,6 +11,18 @@ type BtmNavItem struct {
 	Body  templ.Component
 	Button ButtonAttrs
 	Attrs  templ.Attributes
+	Active bool
+}
+
+script SetActive(index int) {
+    var items = document.querySelectorAll('.btm-nav button')
+    items.forEach((item, i) => {
+        if (i === index) {
+            item.classList.add('active')
+        } else {
+            item.classList.remove('active')
+        }
+    })
 }
 
 func (btm BottomNavAttrs) GetClassName() string {
@@ -37,9 +49,10 @@ func (item BtmNavItem) GetClassName(brand string) string {
 
 templ BottomNav(attrs BottomNavAttrs) {
 	<nav class={ attrs.GetClassName() }>
-		for _, item := range attrs.Items {
+		for i, item := range attrs.Items {
 			<button 
 			{item.Attrs...}
+			onfocus={SetActive(i)}
 			class={ item.GetClassName(attrs.Brand) }>
 				@item.Body
 			</button>
